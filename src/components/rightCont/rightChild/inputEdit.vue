@@ -6,6 +6,9 @@
           <van-cell-group inset>
             <van-field v-model="value" label="名称" placeholder="" />
           </van-cell-group>
+          <van-cell-group inset>
+            <van-field v-model="value3" label="提示语" placeholder="" />
+          </van-cell-group>
           <div class="Select">
             <span>输入框对齐</span>
             <el-select v-model="align" clearable placeholder="Select">
@@ -18,7 +21,7 @@
               </el-select>
           </div>
           <div class="types">
-            <span>输入框对齐</span>
+            <span>输入框类型</span>
             <el-select v-model="type" clearable placeholder="type">
               <el-option
                 v-for="item in types"
@@ -47,6 +50,14 @@
             <span>显示清除图标</span>
             <el-switch v-model="showCicon" />
           </div>
+          <div class="showbutton">
+            <span>显示右侧按钮</span>
+            <el-switch v-model="showbutton" />
+          </div>
+          <el-input v-if="showbutton" v-model="input3" placeholder="Please input" />
+          <van-cell-group inset v-if="showbutton">
+            <van-field v-model="value4" label="颜色" placeholder="" />
+          </van-cell-group>
         </div>
       </van-collapse-item>
       <van-collapse-item title="标题3" name="2">
@@ -118,7 +129,11 @@ export default {
         }
       ],
       showError: false,
-      showCicon: false
+      showCicon: false,
+      value3: '',
+      showbutton: true,
+      input3: '',
+      value4: ''
     })
     return {
       ...toRefs(data)
@@ -144,23 +159,30 @@ export default {
 .van-cell-group--inset{
   margin: 0;
 }
-.Select,.types,.Errors,.Cicons,.leftAligns{
+.Select,.types,.Errors,.Cicons,.leftAligns,.showbutton{
   padding: 0 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   color: black;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
-.Errors,.Cicons{
+.Select{
+  margin-top: 5px;
+}
+.Errors,.Cicons,.showbutton{
     justify-content: flex-start;
 }
-.Errors span,.Cicons span{
+.Errors span,.Cicons span,.showbutton span{
     margin-right: 20px;
 }
 :deep().el-input__wrapper{
   width: 190px !important;
   height: 25px !important;
+}
+.el-input{
+  width: 92%;
+  margin-left: 10px;
 }
 </style>
