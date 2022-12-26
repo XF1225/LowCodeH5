@@ -3,11 +3,7 @@
     <van-collapse v-model="activeNames">
       <van-collapse-item title="基础组件" name="1">
         <div class="bases">
-            <li>输入框</li>
-            <li>按钮</li>
-            <li>文本框</li>
-            <li>单选</li>
-            <li>日期</li>
+            <li v-for="(item,index) of componentsArr" :key="index" @click="toAdd(item)">{{item.name}}</li>
         </div>
         </van-collapse-item>
         <van-collapse-item title="标题2" name="2">
@@ -24,12 +20,19 @@
 import { toRefs, reactive } from 'vue'
 export default {
   name: 'leftCont',
-  setup () {
+  props:{
+    componentsArr: Array
+  },
+  setup (props,{emit}) {
     const data = reactive({
       activeNames: ['1', '2', '3']
     })
+    const toAdd = item => {
+      emit('toItem',item)
+    }
     return {
-      ...toRefs(data)
+      ...toRefs(data),
+      toAdd
     }
   }
 }
