@@ -24,10 +24,7 @@ export default {
   },
   emits: ['update:isActive'],
   setup (props,{emit}) {
-    const data = reactive({
-      ssa: '',
-      dsd:[]
-    })
+    const data = reactive({})
     const changeIndex = index => {
       emit('update:isActive', index)
     }

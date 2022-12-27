@@ -1,9 +1,9 @@
 <template>
   <div>
     <van-cell-group inset>
-      <van-field v-model="value" label="文本" label-align="center" label-width="40px" input-align="center" placeholder="请输入用户名">
-        <template #button v-if="true">
-          <van-button size="small" type="primary">发送验证码</van-button>
+      <van-field v-model="selectObj.props.inputVal" v-model:label="selectObj.props.labelVal" :label-align="selectObj.props.labelAlign" :label-width="selectObj.props.labelWidth" :input-align="selectObj.props.inputAlign" :placeholder="selectObj.props.placeholder">
+        <template #button v-if="selectObj.props.isShowbtn">
+          <van-button size="small" type="primary">{{selectObj.props.btnName}}</van-button>
         </template>
       </van-field>
     </van-cell-group>
@@ -14,10 +14,11 @@
 import { toRefs, reactive } from 'vue'
 export default {
   name: 'centerInput',
+  props: {
+    selectObj: Object
+  },
   setup () {
-    const data = reactive({
-      value: ''
-    })
+    const data = reactive({})
     return {
       ...toRefs(data)
     }

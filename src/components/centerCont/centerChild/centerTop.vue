@@ -1,7 +1,7 @@
 <template>
   <div class="centerTop">
     <div class="top_left">
-      <div class="top_left_1" v-if="true">
+      <div class="top_left_1" v-if="selectObj.props.isShowIcon">
         <p>深圳市</p>
         <van-icon name="arrow-down" />
       </div>
@@ -13,10 +13,10 @@
       <div class="searchcont">
         <div class="contents">
           <van-icon name="search" class="search-icon" />
-          <input type="text" v-model="searchval" placeholder="请输入搜索关键词" class="inputcont">
-          <van-icon name="clear" v-if="searchval !=''" color="#b1b3b8" class="close-icon" @click="clearSearchval" />
+          <input type="text" v-model="selectObj.props.searchval" :placeholder="selectObj.props.placeholder" class="inputcont">
+          <van-icon name="clear" v-if="selectObj.props.searchval !=''" color="#b1b3b8" class="close-icon" @click="clearSearchval" />
         </div>
-        <p class="cancels">取消</p>
+        <p class="cancels" v-show="selectObj.props.showBtn">{{selectObj.props.btnName}}</p>
       </div>
     </div>
     <div class="top_right">
@@ -29,6 +29,9 @@
 import { toRefs, reactive } from 'vue'
 export default {
   name:'centerTop',
+  props: {
+    selectObj: Object
+  },
   setup () {
     const data = reactive({
       searchval: ''

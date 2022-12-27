@@ -1,8 +1,8 @@
 <template>
-  <van-swipe class="my-swipe" :autoplay="3000" lazy-render :show-indicators="false">
-    <van-swipe-item v-for="image in images" :key="image">
-        <img :src="image" class="swipe-img" />
-        <span class="img-desc">111111</span>
+  <van-swipe class="my-swipe" :autoplay="3000" lazy-render :show-indicators="selectObj.props.showIndicators">
+    <van-swipe-item v-for="image in selectObj.props.images" :key="image">
+        <img :src="image.url" class="swipe-img" />
+        <span class="img-desc">{{image.desc}}</span>
     </van-swipe-item>
   </van-swipe>
 </template>
@@ -11,13 +11,11 @@
 import { toRefs, reactive } from 'vue'
 export default {
   name: 'centerSwiper',
+  props: {
+    selectObj:Object
+  },
   setup () {
-    const data = reactive({
-        images:[
-        'https://fastly.jsdelivr.net/npm/@vant/assets/apple-5.jpeg',
-        'https://fastly.jsdelivr.net/npm/@vant/assets/apple-6.jpeg',
-        ]
-    })
+    const data = reactive({})
     return {
       ...toRefs(data)
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="centerUploader">
-    <van-uploader v-model="fileList" multiple preview-size="110px" :preview-full-image="false" />
+    <van-uploader v-model="selectObj.props.fileList" multiple :preview-size="selectObj.props.previewSize" :preview-full-image="selectObj.props.fullImage" />
   </div>
 </template>
 
@@ -8,13 +8,11 @@
 import { toRefs, reactive } from 'vue'
 export default {
   name:'centerUploader',
-  setup() {
-    const data = reactive({
-      fileList: [
-        { url: 'https://fastly.jsdelivr.net/npm/@vant/assets/leaf.jpeg' },
-        { url: 'https://fastly.jsdelivr.net/npm/@vant/assets/tree.jpeg', isImage: true }
-      ]
-    })
+  props: {
+    selectObj: Object
+  },
+  setup(props) {
+    const data = reactive({})
     return {
       ...toRefs(data)
     };

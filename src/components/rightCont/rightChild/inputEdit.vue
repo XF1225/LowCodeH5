@@ -4,14 +4,17 @@
       <van-collapse-item title="基本属性" name="1">
         <div>
           <van-cell-group inset>
-            <van-field v-model="value" label="名称" placeholder="" />
+            <van-field v-model="rightData.props.labelVal" label="名称" placeholder="" />
           </van-cell-group>
           <van-cell-group inset>
-            <van-field v-model="value3" label="提示语" placeholder="" />
+            <van-field v-model="rightData.props.labelWidth" label="文本宽度" placeholder="" />
+          </van-cell-group>
+          <van-cell-group inset>
+            <van-field v-model="rightData.props.placeholder" label="提示语" placeholder="" />
           </van-cell-group>
           <div class="Select">
             <span>输入框对齐</span>
-            <el-select v-model="align" clearable placeholder="Select">
+            <el-select v-model="rightData.props.labelAlign" clearable placeholder="Select">
               <el-option
                 v-for="item in aligns"
                 :key="item.value"
@@ -33,7 +36,7 @@
           </div>
           <div class="leftAligns">
             <span>左侧文本框对齐</span>
-            <el-select v-model="Lalign" clearable placeholder="Lalign">
+            <el-select v-model="rightData.props.inputAlign" clearable placeholder="Lalign">
               <el-option
                 v-for="item in leftAligns"
                 :key="item.value"
@@ -52,11 +55,11 @@
           </div>
           <div class="showbutton">
             <span>显示右侧按钮</span>
-            <el-switch v-model="showbutton" />
+            <el-switch v-model="rightData.props.isShowbtn" />
           </div>
-          <el-input v-if="showbutton" v-model="input3" placeholder="Please input" />
-          <van-cell-group inset v-if="showbutton">
-            <van-field v-model="value4" label="颜色" placeholder="" />
+          <el-input v-if="rightData.props.isShowbtn" v-model="rightData.props.btnName" placeholder="Please input" />
+          <van-cell-group inset v-if="rightData.props.isShowbtn">
+            <van-field v-model="rightData.props.color" label="颜色" placeholder="" />
           </van-cell-group>
         </div>
       </van-collapse-item>
@@ -71,11 +74,12 @@
 import { toRefs, reactive } from 'vue'
 export default {
   name: 'inputEdit',
+  props: {
+    rightData: Object
+  },
   setup () {
     const data = reactive({
       activeNames: ['1', '2'],
-      value: '',
-      align: 'toLeft',
       aligns:[
         {
             value: 'toLeft',
@@ -117,7 +121,6 @@ export default {
             label: '文本域',
         }
       ],
-      Lalign: 'toLeft',
       leftAligns:[
         {
             value: 'toLeft',
@@ -129,11 +132,7 @@ export default {
         }
       ],
       showError: false,
-      showCicon: false,
-      value3: '',
-      showbutton: true,
-      input3: '',
-      value4: ''
+      showCicon: false
     })
     return {
       ...toRefs(data)

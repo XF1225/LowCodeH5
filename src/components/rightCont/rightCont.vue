@@ -1,6 +1,6 @@
 <template>
  <div v-for="(item,index) of centerArr" :key="index">
-    <component v-show="index===isActive" :is="item.editEl" :selectObj="item" :key="isActive"></component>
+    <component v-show="index===isActive" :is="item.editEl" :rightData="item" :key="isActive"></component>
   </div>
 </template>
 
@@ -21,14 +21,6 @@ export default {
     topEdit,
     uploaderEdit,
     swiperEdit
-  },
-  setup () {
-    /* const data = reactive({
-      isCompenent: 'topEdit'
-    })
-    return {
-      ...toRefs(data)
-    } */
   }
 }
 </script>

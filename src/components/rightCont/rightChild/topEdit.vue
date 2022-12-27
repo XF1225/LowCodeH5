@@ -5,23 +5,23 @@
         <div>
           <div class="areas">
             <span>显示图标或位置</span>
-            <el-switch v-model="showIcon" />
+            <el-switch v-model="rightData.props.isShowIcon" />
           </div>
-          <van-cell-group inset v-if="showIcon">
-            <van-field v-model="sms" center clearable label="图标替换">
+          <van-cell-group inset v-if="rightData.props.isShowIcon">
+            <van-field v-model="rightData.props.leftIconUrl" center clearable label="图标替换">
               <template #button>
                 <van-button size="small" type="primary">替换</van-button>
               </template>
             </van-field>
           </van-cell-group>
-          <el-input v-model="input1" placeholder="Please input" />
+          <el-input v-model="rightData.props.placeholder" placeholder="" />
           <div class="showbutton">
             <span>显示按钮</span>
-            <el-switch v-model="showbutton" />
+            <el-switch v-model="rightData.props.showBtn" />
           </div>
-          <el-input v-if="showbutton" v-model="input2" placeholder="Please input" />
-          <van-cell-group inset v-if="showIcon">
-            <van-field v-model="sms" center clearable label="图标替换-右">
+          <el-input class="elInpt" v-if="rightData.props.showBtn" v-model="rightData.props.btnName" placeholder="Please input" />
+          <van-cell-group inset>
+            <van-field v-model="rightData.props.rightIconUrl" center clearable label="图标替换-右">
               <template #button>
                 <van-button size="small" type="primary">替换</van-button>
               </template>
@@ -40,14 +40,12 @@
 import { toRefs, reactive } from 'vue'
 export default {
   name: 'topEdit',
+  props: {
+    rightData: Object
+  },
   setup () {
     const data = reactive({
-      activeNames: ['1', '2'],
-      showIcon: false,
-      sms:'',
-      input1: '',
-      showbutton: true,
-      input2: ''
+      activeNames: ['1', '2']
     })
     return {
       ...toRefs(data)
@@ -79,6 +77,9 @@ export default {
   margin-bottom: 10px;
 }
 .areas span,.showbutton span{
-    margin-right: 10px;
+  margin-right: 10px;
+}
+.elInpt{
+  margin-bottom: 10px;
 }
 </style>

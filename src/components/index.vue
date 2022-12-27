@@ -40,7 +40,15 @@ export default {
           node: 'input',
           editEl: 'inputEdit',
           props: {
-            src: ''
+            inputVal: '',
+            labelVal: '文本',
+            labelAlign: 'center',
+            labelWidth: '40px',
+            inputAlign: 'center',
+            placeholder: '请输入用户名',
+            isShowbtn: true,
+            btnName: '发送验证码',
+            color: '#1989fa'
           }
         },
         {
@@ -51,7 +59,13 @@ export default {
           node: 'top',
           editEl: 'topEdit',
           props: {
-            src: ''
+            isShowIcon: false,
+            leftIconUrl: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-7.jpeg',
+            searchval: '',
+            placeholder: '请输入搜索关键词',
+            showBtn: true,
+            btnName: '取消',
+            rightIconUrl: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-7.jpeg'
           }
         },
         {
@@ -62,7 +76,12 @@ export default {
           node: 'swiper',
           editEl: 'swiperEdit',
           props: {
-            src: ''
+            showIndicators:false,
+            images:[
+              {url:'https://fastly.jsdelivr.net/npm/@vant/assets/apple-5.jpeg',desc:'111111'},
+              {url:'https://fastly.jsdelivr.net/npm/@vant/assets/apple-6.jpeg',desc:'2222222'},
+              {url:'https://fastly.jsdelivr.net/npm/@vant/assets/apple-7.jpeg',desc:'33333'},
+            ]
           }
         },
         {
@@ -73,7 +92,12 @@ export default {
           node: 'uploader',
           editEl: 'uploaderEdit',
           props: {
-            src: ''
+            fileList: [
+              { url: 'https://fastly.jsdelivr.net/npm/@vant/assets/leaf.jpeg' },
+              { url: 'https://fastly.jsdelivr.net/npm/@vant/assets/tree.jpeg', isImage: true }
+            ],
+            previewSize: '110px',
+            fullImage: false
           }
         }
       ],
@@ -81,7 +105,10 @@ export default {
       isActive: 0
     })
     const toItem = item => {
-      data.centerArr.push(item)
+      let newData = JSON.parse(JSON.stringify(item))
+      newData.key = data.centerArr.length
+      data.centerArr.push(newData)
+      //data.centerArr.push(item) 注释，上面代码可以复制数据一份防着数据相互污染
       data.isActive = data.centerArr.length - 1
       nextTick(() => {
         refH5.value.scrollTop = refH5.value.scrollHeight
@@ -119,7 +146,7 @@ export default {
         break;
         case 'delete':
           data.centerArr.splice(data.isActive,1);
-          data.isActive -= 1;
+          data.isActive===0?0:data.isActive -= 1;
         break;
       }
     }
