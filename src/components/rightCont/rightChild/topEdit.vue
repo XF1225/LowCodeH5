@@ -7,11 +7,8 @@
             <span>显示图标或位置</span>
             <el-switch v-model="rightData.props.isShowIcon" />
           </div>
-          <van-cell-group inset v-if="rightData.props.isShowIcon">
-            <van-field v-model="rightData.props.leftIconUrl" center clearable label="图标替换">
-              <template #button>
-                <van-button size="small" type="primary">替换</van-button>
-              </template>
+          <van-cell-group inset v-if="!rightData.props.isShowIcon">
+            <van-field v-model="rightData.props.leftIconUrl" center label="图标替换">
             </van-field>
           </van-cell-group>
           <el-input v-model="rightData.props.placeholder" placeholder="" />
@@ -21,10 +18,7 @@
           </div>
           <el-input class="elInpt" v-if="rightData.props.showBtn" v-model="rightData.props.btnName" placeholder="Please input" />
           <van-cell-group inset>
-            <van-field v-model="rightData.props.rightIconUrl" center clearable label="图标替换-右">
-              <template #button>
-                <van-button size="small" type="primary">替换</van-button>
-              </template>
+            <van-field v-model="rightData.props.rightIconUrl" center label="图标替换-右">
             </van-field>
           </van-cell-group>
         </div>
@@ -63,6 +57,9 @@ export default {
 }
 :deep().van-cell{
   padding: 0 0 10px 10px !important;
+}
+:deep().van-field__label{
+  margin: 0 !important;
 }
 .el-input{
   width: 90%;

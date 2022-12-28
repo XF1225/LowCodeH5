@@ -6,21 +6,23 @@
         <van-icon name="arrow-down" />
       </div>
       <div class="top_left_2" v-else>
-        <van-icon name="location-o" />
+        <img class="top_left_2_img" :src="selectObj.props.leftIconUrl" />
       </div>
     </div>
     <div class="top_center">
       <div class="searchcont">
         <div class="contents">
           <van-icon name="search" class="search-icon" />
-          <input type="text" v-model="selectObj.props.searchval" :placeholder="selectObj.props.placeholder" class="inputcont">
-          <van-icon name="clear" v-if="selectObj.props.searchval !=''" color="#b1b3b8" class="close-icon" @click="clearSearchval" />
+          <input type="text" v-model="searchval" :placeholder="selectObj.props.placeholder" class="inputcont">
+          <van-icon name="clear" v-if="searchval !=''" color="#b1b3b8" class="close-icon" @click="clearSearchval" />
         </div>
         <p class="cancels" v-show="selectObj.props.showBtn">{{selectObj.props.btnName}}</p>
       </div>
     </div>
     <div class="top_right">
-      <van-icon name="chat-o" dot size="25" />
+      <van-icon dot>
+        <img class="top_right_img" :src="selectObj.props.rightIconUrl" />
+      </van-icon>
     </div>
   </div>
 </template>
@@ -65,6 +67,10 @@ export default {
 .top_right{
   display: flex;
   justify-content: flex-end;
+}
+.top_right_img{
+  width: 25px;
+  height: 25px;
 }
 .top_center{
   width: 100%;
@@ -112,5 +118,9 @@ export default {
   align-items: center;
   font-size: 14px;
   cursor: pointer;
+}
+.top_left_2_img{
+  width: 20px;
+  height: 20px;
 }
 </style>

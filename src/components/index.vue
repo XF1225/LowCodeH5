@@ -46,6 +46,8 @@ export default {
             labelWidth: '40px',
             inputAlign: 'center',
             placeholder: '请输入用户名',
+            type: 'text',
+            showError: false,
             isShowbtn: true,
             btnName: '发送验证码',
             color: '#1989fa'
@@ -60,12 +62,12 @@ export default {
           editEl: 'topEdit',
           props: {
             isShowIcon: false,
-            leftIconUrl: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-7.jpeg',
+            leftIconUrl: 'https://fastly.jsdelivr.net/npm/@vant/assets/user-active.png',
             searchval: '',
             placeholder: '请输入搜索关键词',
             showBtn: true,
             btnName: '取消',
-            rightIconUrl: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-7.jpeg'
+            rightIconUrl: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
           }
         },
         {

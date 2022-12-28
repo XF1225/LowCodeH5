@@ -25,7 +25,7 @@
           </div>
           <div class="types">
             <span>输入框类型</span>
-            <el-select v-model="type" clearable placeholder="type">
+            <el-select v-model="rightData.props.type" clearable placeholder="type">
               <el-option
                 v-for="item in types"
                 :key="item.type"
@@ -47,11 +47,7 @@
           </div>
           <div class="Errors">
             <span>显示错误提示</span>
-            <el-switch v-model="showError" />
-          </div>
-          <div class="Cicons">
-            <span>显示清除图标</span>
-            <el-switch v-model="showCicon" />
+            <el-switch v-model="rightData.props.showError" />
           </div>
           <div class="showbutton">
             <span>显示右侧按钮</span>
@@ -82,19 +78,22 @@ export default {
       activeNames: ['1', '2'],
       aligns:[
         {
-            value: 'toLeft',
-            label: '向左',
+          value: 'left',
+          label: '向左',
         },
         {
-            value: 'center',
-            label: '居中',
+          value: 'center',
+          label: '居中',
         },
         {
-            value: 'toRight',
-            label: '向右',
+          value: 'right',
+          label: '向右',
+        },
+        {
+          value: 'top',
+          label: '向上',
         }
       ],
-      type: 'text',
       types:[
         {
             value: 'text',
@@ -123,16 +122,18 @@ export default {
       ],
       leftAligns:[
         {
-            value: 'toLeft',
-            label: '向左',
+          value: 'left',
+          label: '向左',
         },
         {
-            value: 'toTop',
-            label: '向上',
+          value: 'center',
+          label: '居中',
+        },
+        {
+          value: 'right',
+          label: '向右',
         }
-      ],
-      showError: false,
-      showCicon: false
+      ]
     })
     return {
       ...toRefs(data)
