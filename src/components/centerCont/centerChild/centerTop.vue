@@ -110,7 +110,7 @@ export default {
   font-size: 13px;
 }
 ::-webkit-input-placeholder{
-  font-size: 12px;
+  font-size: 13px;
 }
 .top_left_1{
   display: flex;

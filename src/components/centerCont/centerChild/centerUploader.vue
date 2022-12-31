@@ -21,5 +21,7 @@ export default {
 </script>
 
 <style scoped>
-
+.centerUploader{
+  width: 100%;
+}
 </style>

@@ -1,6 +1,11 @@
 <template>
   <el-container class="common-layout">
-    <el-header class="header_top">顶部导航</el-header>
+    <el-header class="header_top">
+      <div class="top-left">顶部导航</div>
+      <div class="top-right">
+        <div v-if="centerArr.length" @click="visible = true"><van-icon name="eye-o" />预览</div>
+      </div>
+    </el-header>
     <el-container class="container_main">
       <el-aside class="aside_left">
         <leftCont :componentsArr="componentsArr" @toItem="toItem"></leftCont>
@@ -22,10 +27,20 @@
       </el-aside>
     </el-container>
   </el-container>
+  <div class="backVisible" v-if="visible">
+    <div class="h5-cont">
+      <van-icon class="closed" name="cross" @click="closed" />
+      <div class="phone_h5_2">
+        <centerCont :centerArr="centerArr"></centerCont>
+      </div>
+    </div>
+    <el-button type="primary" class="primary" @click="toHtml">导出html</el-button>
+  </div>
 </template>
 
 <script>
 import { ref, toRefs, reactive,nextTick } from 'vue'
+import { generateCode } from '../utils/export'
 export default {
   name: 'index',
   setup () {
@@ -104,7 +119,8 @@ export default {
         }
       ],
       centerArr: [],
-      isActive: 0
+      isActive: 0,
+      visible: false
     })
     const toItem = item => {
       let newData = JSON.parse(JSON.stringify(item))
@@ -152,11 +168,28 @@ export default {
         break;
       }
     }
+    const closed = () => {
+      data.visible = false
+    }
+    const toHtml = async () => {
+      await generateCode(data.centerArr)
+      const link = document.createElement("a");
+      link.download = "index.html"; // 文件名
+      link.style.display = "none";
+      const blob = new Blob([data.centerArr], { type: 'text/plain;charset=utf-8' });
+      link.href = window.URL.createObjectURL(blob);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      console.log(data.centerArr)
+    }
     return {
       ...toRefs(data),
       toItem,
       refH5,
-      changeCompont
+      changeCompont,
+      closed,
+      toHtml
     }
   }
 }
@@ -171,7 +204,31 @@ export default {
   min-width: 1150px;
   height: 80px;
   line-height: 80px;
-  background: green;
+  /* background:linear-gradient(150deg,red 12.5%,rgb(252, 117, 140) 25%,rgb(245, 209, 5) 20%,green 37.5%,indigo 50%,blue 62.5%,orange 75%,brown 87.5%,violet 100%); */
+  background: #f168d3;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.top-left{
+  width: 100%;
+  height: 40px;
+}
+.top-right{
+  width: 50%;
+  line-height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 14px;
+  color: rgb(183, 0, 255);
+}
+.top-right div{
+  cursor: pointer;
+}
+.top-right div:hover{
+  font-size: 15px;
 }
 .container_main{
   width: 100%;
@@ -207,6 +264,14 @@ export default {
   border-radius: 8px;
   overflow-y: auto;
 }
+.phone_h5_2{
+  width: 375px;
+  height: 80vh;
+  border: dashed 1.5px #68adf1;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow-y: auto;
+}
 .h5_right{
   width: 40px;
   height: 120px;
@@ -224,5 +289,38 @@ export default {
 }
 .el-main{
   padding: 10px !important;
+}
+.backVisible{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #fff;
+  overflow: hidden;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.h5-cont{
+  width: 450px;
+  height: 90vh;
+  flex-shrink: 0;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.closed{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+.primary{
+  margin-top: 5px;
 }
 </style>

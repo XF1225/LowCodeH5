@@ -23,7 +23,7 @@
           </van-cell-group>
         </div>
       </van-collapse-item>
-      <van-collapse-item title="标题3" name="2">
+      <van-collapse-item title="其他属性" name="2">
         在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。
       </van-collapse-item>
     </van-collapse>

@@ -1,16 +1,13 @@
 <template>
   <div>
     <van-collapse v-model="activeNames">
-      <van-collapse-item title="基础组件" name="1">
+      <van-collapse-item title="基础选项" name="1">
         <div class="bases">
-            <li v-for="(item,index) of componentsArr" :key="index" @click="toAdd(item)">{{item.name}}</li>
+          <li v-for="(item,index) of componentsArr" :key="index" @click="toAdd(item)">{{item.name}}</li>
         </div>
         </van-collapse-item>
-        <van-collapse-item title="标题2" name="2">
+        <van-collapse-item title="其他选项" name="2">
         技术无非就是那些开发它的人的共同灵魂。
-        </van-collapse-item>
-        <van-collapse-item title="标题3" name="3">
-        在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。
         </van-collapse-item>
     </van-collapse>
   </div>
