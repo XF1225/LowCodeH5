@@ -6,8 +6,9 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@vant/touch-emulator": "^1.4.0",
     "amfe-flexible": "^2.2.1",
-    "element-plus": "^2.2.27",
+    "element-plus": "^2.2.25",
     "postcss-pxtorem": "^6.0.0",
     "vant": "^4.0.3",
     "vue": "^3.0.4"

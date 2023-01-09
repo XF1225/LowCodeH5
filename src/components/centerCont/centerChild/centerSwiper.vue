@@ -1,7 +1,7 @@
 <template>
   <van-swipe class="my-swipe" :autoplay="3000" lazy-render :show-indicators="selectObj.props.showIndicators">
     <van-swipe-item v-for="image in selectObj.props.images" :key="image">
-        <img :src="image.url" class="swipe-img" />
+        <img :src="image.url" class="swipe-img" @dragstart.prevent />
         <span class="img-desc">{{image.desc}}</span>
     </van-swipe-item>
   </van-swipe>
