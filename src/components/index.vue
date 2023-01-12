@@ -172,16 +172,15 @@ export default {
       data.visible = false
     }
     const toHtml = async () => {
-      await generateCode(data.centerArr)
+      let jsons = await generateCode(data.centerArr)
       const link = document.createElement("a");
       link.download = "index.html"; // 文件名
       link.style.display = "none";
-      const blob = new Blob([data.centerArr], { type: 'text/plain;charset=utf-8' });
+      const blob = new Blob([jsons], { type: 'text/plain;charset=utf-8' });
       link.href = window.URL.createObjectURL(blob);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      console.log(data.centerArr)
     }
     return {
       ...toRefs(data),

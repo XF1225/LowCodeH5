@@ -1,8 +1,8 @@
 export const generateCode = function(formJson) {
   let formJsonStr = JSON.stringify(formJson)
   return `<!DOCTYPE html>
-  <html>
-  <head>
+    <html>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     <title>VForm Demo</title>
@@ -12,13 +12,11 @@ export const generateCode = function(formJson) {
     </style>
   </head>
   <body>
-
     <div id="app">
       <v-form-render :form-json="formJson" :form-data="formData" :option-data="optionData" ref="vFormRef">
       </v-form-render>
       <el-button type="primary" @click="submitForm">Submit</el-button>
     </div>
-
   <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.30/vue.global.min.js"></script>
   <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-plus/2.0.4/index.full.min.js"></script>
   <script src="https://ks3-cn-beijing.ksyun.com/vform3/render.umd.js?t=20220129"></script>
@@ -35,10 +33,8 @@ export const generateCode = function(formJson) {
         methods: {
           submitForm() {
             this.$refs.vFormRef.getFormData().then( (formData) => {
-              // Form Validation OK
               alert( JSON.stringify(formData) )
             }).catch( function(error) {
-              // Form Validation Failed
               alert(error)
             })
           }
