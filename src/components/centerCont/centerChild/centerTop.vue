@@ -11,11 +11,12 @@
     </div>
     <div class="top_center">
       <div class="searchcont">
-        <div class="contents">
-          <van-icon name="search" class="search-icon" />
-          <input type="text" v-model="searchval" :placeholder="selectObj.props.placeholder" class="inputcont">
-          <van-icon name="clear" v-if="searchval !=''" color="#b1b3b8" class="close-icon" @click="clearSearchval" />
-        </div>
+        <van-search
+           class="contents"
+          v-model="searchval"
+          :placeholder="selectObj.props.placeholder"
+          shape="round"
+        />
         <p class="cancels" v-show="selectObj.props.showBtn">{{selectObj.props.btnName}}</p>
       </div>
     </div>
@@ -92,22 +93,9 @@ export default {
 .contents{
   width: 100%;
   height: 30px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background: #f2f3f5;
-  padding: 0 8px;
 }
-.search-icon,.close-icon{
-  width: 20px;
-  cursor: pointer;
-}
-.inputcont{
-  width: 100%;
-  border: 0;
-  background-color: transparent;
-  font-size: 13px;
+:deep().van-search{
+  padding: 0 !important;
 }
 ::-webkit-input-placeholder{
   font-size: 13px;
